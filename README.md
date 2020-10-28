@@ -35,7 +35,7 @@ Before attempting this deployment, ensure that you have provisioned Virtual Mach
 
 ### Pulling this repository 
 
-`git clone https://github.com/CalvinLoke/LearningWithDocker`
+`git clone https://github.com/CalvinLoke/Datalakes`
 
 ## Deploying MongoDB (Run this code on the machine that you wish to install MongoDB on)
 Ensure that the machine running MongoDB has the following requirements:
