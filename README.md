@@ -24,13 +24,14 @@ Before attempting this deployment, ensure that you have provisioned Virtual Mach
     sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
+### Give current user super user privileges 
+`sudo groupadd docker`
+
+`sudo usermod -aG docker $USER`
+
 ### Verify that Docker is installed
 
 `sudo docker run hello-world`
-
-### Give current user super user privileges 
-
-`sudo usermod -aG docker your-user`
 
 ### Pulling this repository 
 
