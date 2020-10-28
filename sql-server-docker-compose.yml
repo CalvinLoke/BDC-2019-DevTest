@@ -11,7 +11,7 @@ services:
             - "1430:1433"
         container_name: sql-server
     volumes:
-        - sqlvolume:/var/opt/mssql
+        - 'sqlvolume:/var/opt/mssql'
 
 volumes:
     sqlvolume:
