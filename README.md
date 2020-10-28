@@ -9,7 +9,8 @@ Before attempting this deployment, ensure that you have provisioned Virtual Mach
 - 1 for Microsoft Big Data Cluster
 
 ### Install Docker (Run on machines NOT part of the Main Big Data Cluster)
-``` sudo apt-get update && sudo apt-get install \
+``` 
+    sudo apt-get update && sudo apt-get install \
     apt-transport-https \
     ca-certificates \
     curl \
