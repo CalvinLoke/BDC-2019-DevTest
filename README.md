@@ -60,3 +60,20 @@ The MongoDB service can now be accessed through port 27017.
 `docker-compose -f sql-server-docker-compose.yml up -d`
 
 The SQL Server service can now be accessed through port 1430. 
+
+## Noteable setbacks during deployment
+This section will cover the different setbacks and difficulties I faced during the deployment of Big Data Clusters
+
+### Non-relational databases
+The schema of certain complex databases can/will result in long query times due to the resulting schema created (in the form of an external table on the BDC). Hence, one should take note of how the data is stored on the mon-relational database before using it as an external source. 
+
+## Features of BDC
+This section will contain some of my thoughts and evaluation of BDC and its capabilities. 
+
+### Jupyter Notebooks
+Jupyter Notebooks is now an integrated feature in Azure Data Studio, and provides a form of cross-platform compatibility for database management commands. It supports a wide variety of languages including SQL, Python and Spark. As compared to traditional SQL files, these can be shared with other Database Administrators that might be running on a different environment (eg Linux or MacOS). The notebooks are also generic in nature, in the sense that connections are managed based on where it is deployed, and its not shipped together with the notebook itself, thus eliminating the risk of a security breach due to the distribution of notebooks. 
+
+Multiple Notebooks can be compiled together to form a *Jupytwer Book* which can serve as a reference file, that executes queries/commands to the SQL Server. 
+
+#### Deploying clusters with Notebooks
+The deployment of a Big Data Cluster can be done through the use of notebooks as well
