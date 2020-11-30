@@ -56,7 +56,7 @@ services:
     volumes: 
         - 'shard0_secondary1_data:/bitnami'      
       
-  mongodb-shard1-primary:  
+  mongodb-shard1-primary:
     image: 'docker.io/bitnami/mongodb-sharded:4.4-debian-10'
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard1-primary
@@ -65,29 +65,29 @@ services:
       - MONGODB_ROOT_PASSWORD=password123
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
-      - MONGODB_REPLICA_SET_NAME=shard1   
-    volumes: 
-        - 'shard1_primary_data:/bitnami'   
+      - MONGODB_REPLICA_SET_NAME=shard1
+    volumes:
+      - 'shard0_primary_data:/bitnami'   
 
   mongodb-shard1-secondary0:
     image: 'docker.io/bitnami/mongodb-sharded:4.4-debian-10'
     depends_on:
-      - mongodb-shard1-primary
+      - mongodb-shard0-primary
     environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard1-secondary0
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard0-secondary0
       - MONGODB_REPLICA_SET_MODE=secondary
       - MONGODB_INITIAL_PRIMARY_HOST=mongodb-shard1-primary
       - MONGODB_PRIMARY_ROOT_PASSWORD=password123
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_SHARDING_MODE=shardsvr
-      - MONGODB_REPLICA_SET_NAME=shard1     
-    volumes: 
-        - 'shard1_secondary0_data:/bitnami'    
+      - MONGODB_REPLICA_SET_NAME=shard1    
+    volumes:
+      - 'shard0_secondary0_data:/bitnami'    
       
   mongodb-shard1-secondary1:
     image: 'docker.io/bitnami/mongodb-sharded:4.4-debian-10'
     depends_on:
-      - mongodb-shard1-primary
+      - mongodb-shard0-primary
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard1-secondary1
       - MONGODB_REPLICA_SET_MODE=secondary
@@ -95,9 +95,9 @@ services:
       - MONGODB_PRIMARY_ROOT_PASSWORD=password123
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_SHARDING_MODE=shardsvr
-      - MONGODB_REPLICA_SET_NAME=shard1     
+      - MONGODB_REPLICA_SET_NAME=shard1
     volumes: 
-        - 'shard1_secondary1_data:/bitnami'   
+        - 'shard0_secondary1_data:/bitnami'  
       
   mongodb-shard2-primary:
     image: 'docker.io/bitnami/mongodb-sharded:4.4-debian-10'
