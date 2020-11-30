@@ -23,3 +23,6 @@ However, it limitations include:
 - The datasets must not be used in a manner that suggests any official status or that an agency endorses you or your use of the datasets. 
 
 - It does not grant you any rights to downstream sub-licensees
+
+## Information about this data set
+This data set contains the information regarding some of the data in Singapore Airports, with data dating back to January 1980 and the most recent entry of July 2020. It was modified to better suit the format of databases.  
