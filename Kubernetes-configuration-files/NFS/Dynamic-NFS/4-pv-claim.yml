@@ -8,4 +8,4 @@ spec:
     - ReadWriteMany #  must be the same as PersistentVolume
   resources:
     requests:
-      storage: 500Mi
+      storage: 20Gi
