@@ -8,7 +8,7 @@ Run the following commands:
 
 `kubectl apply -f 3-nginx-test.yml`
 
-If the nginx container is stuck on pending, run this command:
+If the nginx container is stuck on pending, run this command on all the nodes (master ans worker):
 `sudo apt-get install -y nfs-common`
 
 `systemctl daemon-reload && systemctl restart kubelet` 
