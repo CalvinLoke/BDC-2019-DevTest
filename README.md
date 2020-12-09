@@ -54,6 +54,9 @@ This section will contain useful commands for debugging and/or configuring clust
 | namespaces | - |
 | deployments | - |
 
+### Getting join command for Kubernetes
+`kubeadm token create --print-join-command`
+
 ### Node had taints that the pod didn't tolerate error when deploying to Kubernetes cluster
 This usually occurs if you only boostrapped a cluster with a single master node. 
 `kubectl taint nodes <node-name> node-role.kubernetes.io/master-`
