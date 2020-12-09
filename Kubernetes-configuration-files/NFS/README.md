@@ -12,7 +12,7 @@ Change ownership
 
 Change read write permissions
 
-`sudo chmod 777 /mnt/nfs_share/`
+`sudo chmod 777 /srv/nfs/kubedata`
 
 Install NFS Kernel
 
