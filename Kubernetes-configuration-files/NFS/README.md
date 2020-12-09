@@ -18,15 +18,11 @@ Install NFS Kernel
 
 `sudo apt install nfs-kernel-server nfs-common`
 
-Change ownership 
-
-`sudo chown nfsnobody: /srv/nfs/kubedata/`
-
 Enable, start and check status
 
 ```
-sudo systemctl enable nfs-server
-sudo systemctl start nfs-server
+sudo systemctl enable nfs-server &&
+sudo systemctl start nfs-server &&
 sudo systemctl status nfs-server
 ```
 
