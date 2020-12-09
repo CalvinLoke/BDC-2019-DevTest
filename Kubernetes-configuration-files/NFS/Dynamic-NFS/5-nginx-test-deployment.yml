@@ -15,12 +15,12 @@ spec:
         app: nginx
     spec:
       volumes:
-      - name: kube-nfs #
+      - name: nfs-test #
         persistentVolumeClaim:
           claimName: nfs-pvc-test  # same name of pvc that was created
       containers:
       - image: nginx
         name: nginx
         volumeMounts:
-        - name: nfs-pvc-test # name of volume should match claimName volume
+        - name: nfs-test # name of volume should match claimName volume
           mountPath: share # mount inside of contianer
