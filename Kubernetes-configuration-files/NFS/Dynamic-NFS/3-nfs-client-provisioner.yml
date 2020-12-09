@@ -23,7 +23,7 @@ spec:
               mountPath: /persistentvolumes
           env:
             - name: PROVISIONER_NAME # do not change
-              value: kube-nfs # SAME AS PROVISONER NAME VALUE IN STORAGECLASS
+              value: nfs-test # SAME AS PROVISONER NAME VALUE IN STORAGECLASS
             - name: NFS_SERVER # do not change
               value: 10.10.2.212 # Ip of the NFS SERVER
             - name: NFS_PATH # do not change
