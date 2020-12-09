@@ -22,5 +22,5 @@ spec:
       - image: nginx
         name: nginx
         volumeMounts:
-        - name: kube-nfs # name of volume should match claimName volume
+        - name: nfs-pvc-test # name of volume should match claimName volume
           mountPath: share # mount inside of contianer
