@@ -30,8 +30,7 @@ Edit exports file
 
 ```
 sudo vi /etc/exports
-/srv/nfs/kubedata *
-(rw,sync,no_subtree_check,no_root_squash,no_all_squash,insecure)
+/srv/nfs/kubedata *(rw,sync,no_subtree_check,no_root_squash,no_all_squash,insecure)
 ```
 
 Run exportfs command
