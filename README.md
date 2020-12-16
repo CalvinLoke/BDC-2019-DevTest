@@ -113,7 +113,6 @@ sudo apt-get install gnupg ca-certificates curl wget software-properties-common 
 curl -sL https://packages.microsoft.com/keys/microsoft.asc |
 gpg --dearmor |
 sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
-
 ```
 
 #### Create local repository
@@ -152,7 +151,6 @@ NOTE THAT AS OF DEC 2020 I WAS NOT ABLE TO GET PERSISTENT STORAGE WITH NFS WORKI
 
 `azdata bdc create --accept-eula=y`
 
-
 ## Kubernetes commands
 This section will contain useful commands for debugging and/or configuring cluster information. 
 
@@ -174,4 +172,5 @@ This section will contain useful commands for debugging and/or configuring clust
 
 ### Node had taints that the pod didn't tolerate error when deploying to Kubernetes cluster
 This usually occurs if you only boostrapped a cluster with a single master node. 
+
 `kubectl taint nodes <node-name> node-role.kubernetes.io/master-`
