@@ -1,7 +1,9 @@
 # Microsoft Big Data Clusters
 
 # Deployment proceedure
+
 ## Deploy Kubernetes
+
 ### Add the current machine to the hosts file
 `echo $(hostname -i) $(hostname) | sudo tee -a /etc/hosts`
 ### Disable swapping on all devices
@@ -32,11 +34,124 @@ sudo sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 ### Initialize Kubernetes master (FOR MASTER ONLY)
 
+```
+cat <<EOF > rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: default-rbac
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+EOF
+```
+
+```
+KUBE_VERSION=1.15.0
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --kubernetes-version=$KUBE_VERSION
+```
+
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+```
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+helm init
+kubectl apply -f rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+```
+
+`sudo kubeadm token create --print-join-command`
 
 ## Add persistent storage
+
 ### Local Storage
-### Mount NFS (Active/Static) 
-## Install Azdata CLI
+
+#### Run on all nodes
+
+`git clone https://github.com/Calvinloke/BDC-2019-DevTest`
+
+#### Run on Worker nodes only!
+
+`cd BDC-2019-DevTest/KubernetesConfigurationFiles/Local-Storage`
+
+`chmod +x setup-volumes-agent.sh`
+
+`sudo ./setup-volumes-agent.sh`
+
+#### Run on Master node only!
+
+`kubectl apply -f local-storage.yml`
+
+### Mount NFS (Active/Static) NOTE THAT THIS DOESN'T SEEM TO WORK AS OF DEC 2020 MAY UPDATE IF FOUND SOLUTION
+
+<PLACEHOLDER>
+
+## Install Azdata CLI (install on master node only or machine used to access the K8s cluster)
+
+### Installation using apt
+
+#### Install dependencies
+
+```
+sudo apt-get update
+sudo apt-get install gnupg ca-certificates curl wget software-properties-common apt-transport-https lsb-release -y
+```
+
+#### Import microsoft key
+
+```
+curl -sL https://packages.microsoft.com/keys/microsoft.asc |
+gpg --dearmor |
+sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
+
+```
+
+#### Create local repository
+
+Ubuntu 16.04:
+
+`sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/prod.list)"`
+
+Ubuntu 18.04:
+
+`sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/18.04/prod.list)"`
+
+Ubuntu 20.04:
+
+`sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/prod.list)"`
+
+#### Install 
+
+```
+sudo apt-get update
+sudo apt-get install -y azdata-cli
+```
+
+#### Verify install
+
+```
+azdata 
+azdata --version
+```
+
+## Deploy BDC
+
+NOTE THAT AS OF DEC 2020 I WAS NOT ABLE TO GET PERSISTENT STORAGE WITH NFS WORKING FOR BIG DATA CLUSTERS. 
+
+### Run start command
+
+`azdata bdc create --accept-eula=y`
+
 
 ## Kubernetes commands
 This section will contain useful commands for debugging and/or configuring cluster information. 
