@@ -183,7 +183,7 @@ export DOMAIN_SERVICE_ACCOUNT_USERNAME=contoso\administrator
 export DOMAIN_SERVICE_ACCOUNT_PASSWORD=Password1
 ```
 
-`azdata bdc config init --source kubeadm-prod  --target custom-prod-kubeadm`
+`azdata bdc config init --source kubeadm-prod  --path custom-prod-kubeadm`
 
 ```
 azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.security.activeDirectory.ouDistinguishedName=OU\=bdc\,DC\=contoso\,DC\=com"
