@@ -147,9 +147,25 @@ azdata --version
 
 NOTE THAT AS OF DEC 2020 I WAS NOT ABLE TO GET PERSISTENT STORAGE WITH NFS WORKING FOR BIG DATA CLUSTERS. 
 
-### Run start command
+### Create a big data cluster
 
 `azdata bdc create --accept-eula=y`
+
+You will be given a few default configurations to use for your deployment. To view the available configurations, you could use
+
+`azdata bdc config list`
+
+To modify a specific configuration, use
+
+`azdata bdc config init --source <default-configuration>  --path <custom-configuration-name>`
+
+For a cluster bootstrapped by Kubeadm, only the options of `kubeadm-dev-test` and `kubeadm-prod` can be used. 
+
+To modify the settings within the new custom configuration files, use:
+
+`azdata bdc config replace -p <custom-configuration-name>/control.json`
+
+`azdata bdc config replace -p <custom-configuration-name>/bdc.json`
 
 ## Kubernetes commands
 This section will contain useful commands for debugging and/or configuring cluster information. 
@@ -194,11 +210,13 @@ azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.security.act
 azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.security.activeDirectory.clusterUsers=[\"bdcusersgroup\"]"
 
 # DNS names for BDC services
-azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.spec.endpoints[0].dnsName=controller.contoso.local"
-azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.spec.endpoints[1].dnsName=monitorinngservice.contoso.com"
+azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.spec.endpoints[0].dnsName=controller.contoso.com"
+azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.spec.endpoints[1].dnsName=monitoringservice.contoso.com"
 azdata bdc config replace -p custom-prod-kubeadm/bdc.json -j "$.spec.resources.master.spec.endpoints[0].dnsName=sqlmaster.contoso.com"
 azdata bdc config replace -p custom-prod-kubeadm/bdc.json -j "$.spec.resources.master.spec.endpoints[1].dnsName=sqlmastersecondary.contoso.com"
 azdata bdc config replace -p custom-prod-kubeadm/bdc.json -j "$.spec.resources.gateway.spec.endpoints[0].dnsName=knox.contoso.com"
 azdata bdc config replace -p custom-prod-kubeadm/bdc.json -j "$.spec.resources.appproxy.spec.endpoints[0].dnsName=proxy.contoso.com"
 
 ```
+
+`azdata bdc create --config-profile custom-prod-kubeadm --accept-eula=y`
