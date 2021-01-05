@@ -194,7 +194,7 @@ azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.security.act
 azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.security.activeDirectory.clusterUsers=[\"bdcusersgroup\"]"
 
 # DNS names for BDC services
-azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.spec.endpoints[0].dnsName=<controller DNS name>.contoso.local"
+azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.spec.endpoints[0].dnsName=controller.contoso.local"
 azdata bdc config replace -p custom-prod-kubeadm/control.json -j "$.spec.endpoints[1].dnsName=monitorinngservice.contoso.com"
 azdata bdc config replace -p custom-prod-kubeadm/bdc.json -j "$.spec.resources.master.spec.endpoints[0].dnsName=sqlmaster.contoso.com"
 azdata bdc config replace -p custom-prod-kubeadm/bdc.json -j "$.spec.resources.master.spec.endpoints[1].dnsName=sqlmastersecondary.contoso.com"
