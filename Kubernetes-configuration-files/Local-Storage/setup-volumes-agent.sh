@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # num of persistent volumes
-PV_COUNT=25
+PV_COUNT=60
 
 for i in $(seq 1 $PV_COUNT); do
   vol="vol$i"
