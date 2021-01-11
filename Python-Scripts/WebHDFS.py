@@ -61,6 +61,7 @@ try:
     elif user_input == "2":
         dest_folder = input("Please enter the folder name: ")
         file_name = input("Please enter the file to upload: ")
+        uploadFile(dest_folder, file_name)
     elif user_input == "3":
         dir_path = input("Please enter folder name: ")
         checkDirectory(dir_path)
