@@ -9,8 +9,8 @@ def createDirectory(dir_name):
         ('op', 'MKDIRS'),
     )
 
-    # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/' + dir_name
-    url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir'
+    url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/' + dir_name
+    # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir'
 
     response = requests.put(url, params=params, verify=False, auth=('admin', 'Password1234'))
     
@@ -32,14 +32,35 @@ def uploadFile():
     print(response)
 
 
-def checkDirectory(path_to_dir):
+def checkDirectory(folder_name):
     params = (
         ('op', 'liststatus'),
     )
 
-    response = requests.get('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/', params=params, verify=False, auth=('admin', 'Password1234'))
+    # url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/'
+    url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/' + folder_name + "/"
+    response = requests.get(, params=params, verify=False, auth=('admin', 'Password1234'))
 
     print(response.content)
 
 
-checkDirectory("null")
+print("Select option:")
+print("1) Create Directory")
+print("2) Upload file to directory")
+print("3) Check files in directory")
+
+user_input = input("Your option")
+
+try:
+    if user_input is "1":
+        dir_name = input("Please enter the directory name: ")
+        createDirectory(dir_name)
+    elif user_input is "2":
+        print("This function is not supported yet")
+    elif user_input is "3":
+        dir_path = input("Please enter folder name: ")
+        checkDirectory(dir_path)
+except:
+    print("An error has occured")
+
+
