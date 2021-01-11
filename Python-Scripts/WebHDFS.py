@@ -52,12 +52,12 @@ print("3) Check files in directory")
 user_input = input("Your option")
 
 try:
-    if user_input is "1":
+    if user_input == "1":
         dir_name = input("Please enter the directory name: ")
         createDirectory(dir_name)
-    elif user_input is "2":
+    elif user_input == "2":
         print("This function is not supported yet")
-    elif user_input is "3":
+    elif user_input == "3":
         dir_path = input("Please enter folder name: ")
         checkDirectory(dir_path)
 except:
