@@ -17,7 +17,7 @@ def createDirectory(dir_name):
     print(response)
 
 
-def uploadFile():
+def uploadFile(path, file_name):
 
     headers = {
         'Content-Type': 'application/octet-stream',
@@ -27,7 +27,10 @@ def uploadFile():
         ('op', 'create'),
     )
 
-    response = requests.put('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/test2.csv', headers=headers, params=params, verify=False, auth=('admin', 'Password1234'))
+    # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/test2.csv'
+    url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/' + path + '/' + file_name
+
+    response = requests.put(url, headers=headers, params=params, verify=False, auth=('admin', 'Password1234'))
 
     print(response)
 
@@ -49,14 +52,15 @@ print("1) Create Directory")
 print("2) Upload file to directory")
 print("3) Check files in directory")
 
-user_input = input("Your option")
+user_input = input("Your option: ")
 
 try:
     if user_input == "1":
         dir_name = input("Please enter the directory name: ")
         createDirectory(dir_name)
     elif user_input == "2":
-        print("This function is not supported yet")
+        dest_folder = input("Please enter the folder name: ")
+        file_name = input("Please enter the file to upload: ")
     elif user_input == "3":
         dir_path = input("Please enter folder name: ")
         checkDirectory(dir_path)
