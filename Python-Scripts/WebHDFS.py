@@ -39,7 +39,7 @@ def checkDirectory(folder_name):
 
     # url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/'
     url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/' + folder_name + "/"
-    response = requests.get(, params=params, verify=False, auth=('admin', 'Password1234'))
+    response = requests.get(url, params=params, verify=False, auth=('admin', 'Password1234'))
 
     print(response.content)
 
