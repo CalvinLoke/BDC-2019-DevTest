@@ -5,8 +5,8 @@ import os.path
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) # Supresses unverified HTTPS warning
 
 # Global variables
-global ip_address = ""
-global main_url = ""
+global ip_address
+global main_url
 
 
 def getIP(address):
