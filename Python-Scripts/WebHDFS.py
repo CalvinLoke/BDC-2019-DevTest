@@ -1,6 +1,7 @@
 import requests
 import urllib3
 
+# Supresses unverified HTTPS warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def createDirectory(dir_name):
@@ -66,11 +67,11 @@ try:
         # Code block to check if file exists
         try:
             target_file = open(file_name)
+            uploadFile(dest_folder, file_name)
         except IOError:
             print("IOError: File does not exist or not accessible")
         finally:
             target_file.close
-        uploadFile(dest_folder, file_name)
 
     elif user_input == "3":
         dir_path = input("Please enter folder name: ")
