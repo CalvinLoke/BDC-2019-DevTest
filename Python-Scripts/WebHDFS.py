@@ -53,15 +53,25 @@ print("2) Upload file to directory")
 print("3) Check files in directory")
 
 user_input = input("Your option: ")
+user_input.strip() # removes trailing whitespaces
 
 try:
     if user_input == "1":
         dir_name = input("Please enter the directory name: ")
         createDirectory(dir_name)
+
     elif user_input == "2":
         dest_folder = input("Please enter the folder name: ")
         file_name = input("Please enter the file to upload: ")
+        # Code block to check if file exists
+        try:
+            target_file = open(file_name)
+        except IOError:
+            print("IOError: File does not exist or not accessible")
+        finally:
+            target_file.close
         uploadFile(dest_folder, file_name)
+
     elif user_input == "3":
         dir_path = input("Please enter folder name: ")
         checkDirectory(dir_path)
