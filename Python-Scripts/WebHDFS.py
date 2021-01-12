@@ -68,6 +68,7 @@ try:
         # Code block to check if file exists
         if os.path.isfile(file_name):
             print("File exists")
+            uploadFile(dest_folder, file_name)
         else:
             print("File does not exist")
         # uploadFile(dest_folder, file_name)
