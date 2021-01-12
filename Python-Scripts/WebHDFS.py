@@ -66,11 +66,11 @@ try:
         dest_folder = input("Please enter the folder name: ")
         file_name = input("Please enter the file to upload: ")
         # Code block to check if file exists
-        if os.path.isfile(file_name):
-            print("File exists")
-        else:
-            print("File does not exist")
-        # uploadFile(dest_folder, file_name)
+        # if os.path.isfile(file_name):
+        #     print("File exists")
+        # else:
+        #     print("File does not exist")
+        uploadFile(dest_folder, file_name)
 
     elif user_input == "3":
         dir_path = input("Please enter folder name: ")
