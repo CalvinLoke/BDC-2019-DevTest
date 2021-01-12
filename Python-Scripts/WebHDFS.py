@@ -4,6 +4,7 @@ import os.path
 
 # Supresses unverified HTTPS warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+main_url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/'
 
 def createDirectory(dir_name):
 
@@ -11,7 +12,7 @@ def createDirectory(dir_name):
         ('op', 'MKDIRS'),
     )
 
-    url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/' + dir_name
+    url = main_url + dir_name
     # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir'
 
     response = requests.put(url, params=params, verify=False, auth=('admin', 'Password1234'))
@@ -29,8 +30,8 @@ def uploadFile(path, file_name):
         ('op', 'create'),
     )
 
+    url = main_url + path + '/' + file_name
     # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/test2.csv'
-    url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/' + path + '/' + file_name
 
     response = requests.put(url, headers=headers, params=params, verify=False, auth=('admin', 'Password1234'))
 
@@ -42,8 +43,9 @@ def checkDirectory(folder_name):
         ('op', 'liststatus'),
     )
 
+    url = main_url + folder_name + "/"
     # url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/'
-    url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/' + folder_name + "/"
+    
     response = requests.get(url, params=params, verify=False, auth=('admin', 'Password1234'))
 
     print(response.content)
@@ -55,7 +57,8 @@ def main():
         print("1) Create Directory")
         print("2) Upload file to directory")
         print("3) Check files in directory")
-        print("4) Exit")
+        print("4) Print WebHDFS url")
+        print("5) Exit")
 
         user_input = input("Your option: ")
         user_input.strip() # removes trailing whitespaces
@@ -83,8 +86,16 @@ def main():
             continue
 
         elif user_input == "4":
+            print(main_url)
+            continue
+
+        elif user_input == "5":
             print("Program will now exit")
             exit()
+
+        else:
+            print("Input not recognized")
+            continue
 
 
 if __name__ == "__main__":
