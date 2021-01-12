@@ -63,7 +63,6 @@ def main():
     if user_input == "1":
         dir_name = input("Please enter the desired directory name: ")
         createDirectory(dir_name)
-        continue
 
     elif user_input == "2":
         dest_folder = input("Please enter the folder name: ")
@@ -75,12 +74,10 @@ def main():
         else:
             print("Warning: File does not exist")
         # uploadFile(dest_folder, file_name)
-        continue
 
     elif user_input == "3":
         dir_path = input("Please enter folder name: ")
         checkDirectory(dir_path)
-        continue
 
     elif user_input == "4":
         print("Program will now exit")
