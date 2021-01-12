@@ -59,6 +59,7 @@ def checkDirectory(folder_name):
 # Main core function
 def main():
     while True:
+        global ip_address
         if ip_address is "":
             print("Please enter the WebHDFS IP Address")
             input_address = input("IP Address: ")
