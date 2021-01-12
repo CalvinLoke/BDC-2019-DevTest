@@ -53,6 +53,7 @@ print("Select option:")
 print("1) Create Directory")
 print("2) Upload file to directory")
 print("3) Check files in directory")
+print("4) Exit")
 
 user_input = input("Your option: ")
 user_input.strip() # removes trailing whitespaces
@@ -70,12 +71,16 @@ try:
             print("File exists")
             uploadFile(dest_folder, file_name)
         else:
-            print("File does not exist")
+            print("Warning: File does not exist")
         # uploadFile(dest_folder, file_name)
 
     elif user_input == "3":
         dir_path = input("Please enter folder name: ")
         checkDirectory(dir_path)
+
+    elif user_input == "4":
+        print("Program will now exit")
+        exit()
 except:
     print("An error has occured")
 
