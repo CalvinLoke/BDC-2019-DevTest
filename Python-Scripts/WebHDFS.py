@@ -48,39 +48,46 @@ def checkDirectory(folder_name):
 
     print(response.content)
 
+# Main core function
+def main():
+    print("Select option:")
+    print("1) Create Directory")
+    print("2) Upload file to directory")
+    print("3) Check files in directory")
+    print("4) Exit")
 
-print("Select option:")
-print("1) Create Directory")
-print("2) Upload file to directory")
-print("3) Check files in directory")
-print("4) Exit")
-
-user_input = input("Your option: ")
-user_input.strip() # removes trailing whitespaces
+    user_input = input("Your option: ")
+    user_input.strip() # removes trailing whitespaces
 
 
-if user_input == "1":
-    dir_name = input("Please enter the desired directory name: ")
-    createDirectory(dir_name)
+    if user_input == "1":
+        dir_name = input("Please enter the desired directory name: ")
+        createDirectory(dir_name)
+        continue
 
-elif user_input == "2":
-    dest_folder = input("Please enter the folder name: ")
-    file_name = input("Please enter the file to upload: ")
-    # Code block to check if file exists
-    if os.path.isfile(file_name):
-        print("File exists")
-        uploadFile(dest_folder, file_name)
-    else:
-        print("Warning: File does not exist")
-    # uploadFile(dest_folder, file_name)
+    elif user_input == "2":
+        dest_folder = input("Please enter the folder name: ")
+        file_name = input("Please enter the file to upload: ")
+        # Code block to check if file exists
+        if os.path.isfile(file_name):
+            print("File exists")
+            uploadFile(dest_folder, file_name)
+        else:
+            print("Warning: File does not exist")
+        # uploadFile(dest_folder, file_name)
+        continue
 
-elif user_input == "3":
-    dir_path = input("Please enter folder name: ")
-    checkDirectory(dir_path)
+    elif user_input == "3":
+        dir_path = input("Please enter folder name: ")
+        checkDirectory(dir_path)
+        continue
 
-elif user_input == "4":
-    print("Program will now exit")
-    exit()
+    elif user_input == "4":
+        print("Program will now exit")
+        exit()
 
+
+if __name__ == "__main__":
+    main()
 
 
