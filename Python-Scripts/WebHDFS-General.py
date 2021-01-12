@@ -62,6 +62,7 @@ def main():
         if ip_address is "":
             print("Please enter the WebHDFS IP Address")
             input_address = input("IP Address: ")
+            getIP(input_address)
             continue
 
         print("Select option:")
