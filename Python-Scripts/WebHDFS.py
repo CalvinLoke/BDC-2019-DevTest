@@ -1,5 +1,6 @@
 import requests
 import urllib3
+import os.path
 
 # Supresses unverified HTTPS warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -58,21 +59,18 @@ user_input.strip() # removes trailing whitespaces
 
 try:
     if user_input == "1":
-        dir_name = input("Please enter the directory name: ")
+        dir_name = input("Please enter the desired directory name: ")
         createDirectory(dir_name)
 
     elif user_input == "2":
         dest_folder = input("Please enter the folder name: ")
         file_name = input("Please enter the file to upload: ")
         # Code block to check if file exists
-        # try:
-        #     target_file = open(file_name)
-        #     uploadFile(dest_folder, file_name)
-        # except IOError:
-        #     print("IOError: File does not exist or not accessible")
-        # finally:
-        #     target_file.close
-        uploadFile(dest_folder, file_name)
+        if os.path.isfile(file_name):
+            print("File exists")
+        else:
+            print("File does not exist")
+        # uploadFile(dest_folder, file_name)
 
     elif user_input == "3":
         dir_path = input("Please enter folder name: ")
