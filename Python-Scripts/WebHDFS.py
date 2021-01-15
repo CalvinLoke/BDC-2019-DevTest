@@ -26,9 +26,9 @@ def uploadFile(path, file_name):
         'Content-Type': 'application/octet-stream'
     }
 
-    # params = (
-    #     ('op', 'create'),
-    # )
+    params = (
+        ('op', 'create'),
+    )
 
     # url = main_url + path + '/' + file_name + "?filename=" + file_name
 
@@ -51,6 +51,7 @@ def uploadFile(path, file_name):
     response = requests.post(url,
                             headers=headers,
                             files=files,
+                            params=params,
                             verify=False,
                             auth=('admin', 'Password1234'))
 
