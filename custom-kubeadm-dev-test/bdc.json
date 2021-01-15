@@ -1,0 +1,146 @@
+{
+    "apiVersion": "v1",
+    "metadata": {
+        "kind": "BigDataCluster",
+        "name": "mssql-cluster"
+    },
+    "spec": {
+        "resources": {
+            "nmnode-0": {
+                "spec": {
+                    "replicas": 1
+                }
+            },
+            "sparkhead": {
+                "spec": {
+                    "replicas": 1
+                }
+            },
+            "zookeeper": {
+                "spec": {
+                    "replicas": 0
+                }
+            },
+            "gateway": {
+                "spec": {
+                    "replicas": 1,
+                    "endpoints": [
+                        {
+                            "name": "Knox",
+                            "serviceType": "NodePort",
+                            "port": 30443
+                        }
+                    ]
+                }
+            },
+            "appproxy": {
+                "spec": {
+                    "replicas": 1,
+                    "endpoints": [
+                        {
+                            "name": "AppServiceProxy",
+                            "serviceType": "NodePort",
+                            "port": 30778
+                        }
+                    ]
+                }
+            },
+            "master": {
+                "metadata": {
+                    "kind": "Pool",
+                    "name": "default"
+                },
+                "spec": {
+                    "type": "Master",
+                    "replicas": 1,
+                    "endpoints": [
+                        {
+                            "name": "Master",
+                            "serviceType": "NodePort",
+                            "port": 31433
+                        }
+                    ],
+                    "settings": {
+                        "sql": {
+                            "hadr.enabled": "false"
+                        }
+                    }
+                }
+            },
+            "compute-0": {
+                "metadata": {
+                    "kind": "Pool",
+                    "name": "default"
+                },
+                "spec": {
+                    "type": "Compute",
+                    "replicas": 1
+                }
+            },
+            "data-0": {
+                "metadata": {
+                    "kind": "Pool",
+                    "name": "default"
+                },
+                "spec": {
+                    "type": "Data",
+                    "replicas": 2
+                }
+            },
+            "storage-0": {
+                "metadata": {
+                    "kind": "Pool",
+                    "name": "default"
+                },
+                "spec": {
+                    "type": "Storage",
+                    "replicas": 2,
+                    "settings": {
+                        "spark": {
+                            "includeSpark": "true"
+                        }
+                    }
+                }
+            }
+        },
+        "services": {
+            "sql": {
+                "resources": [
+                    "master",
+                    "compute-0",
+                    "data-0",
+                    "storage-0"
+                ]
+            },
+            "hdfs": {
+                "resources": [
+                    "nmnode-0",
+                    "zookeeper",
+                    "storage-0",
+                    "sparkhead"
+                ],
+                "settings": {}
+            },
+            "spark": {
+                "resources": [
+                    "sparkhead",
+                    "storage-0"
+                ],
+                "settings": {
+                    "spark-defaults-conf.spark.driver.cores": "1",
+                    "spark-defaults-conf.spark.driver.memory": "1664m",
+                    "spark-defaults-conf.spark.driver.memoryOverhead": "384",
+                    "spark-defaults-conf.spark.executor.instances": "1",
+                    "spark-defaults-conf.spark.executor.cores": "2",
+                    "spark-defaults-conf.spark.executor.memory": "3712m",
+                    "spark-defaults-conf.spark.executor.memoryOverhead": "384",
+                    "yarn-site.yarn.nodemanager.resource.memory-mb": "12288",
+                    "yarn-site.yarn.nodemanager.resource.cpu-vcores": "6",
+                    "yarn-site.yarn.scheduler.maximum-allocation-mb": "12288",
+                    "yarn-site.yarn.scheduler.maximum-allocation-vcores": "6",
+                    "yarn-site.yarn.scheduler.capacity.maximum-am-resource-percent": "0.34"
+                }
+            }
+        }
+    }
+}
