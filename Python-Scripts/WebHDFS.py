@@ -43,7 +43,7 @@ def uploadFile(path, file_name):
 
     response = requests.post('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?filename=test.csv',
                               headers=headers,
-                              data=open('test.csv','rb'),
+                              data=open('test.csv','rt'),
                               verify=False,
                               auth=('admin', 'Password1234'))
 
