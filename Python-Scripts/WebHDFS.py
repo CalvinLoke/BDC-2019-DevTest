@@ -30,9 +30,7 @@ def uploadFile(path, file_name):
     #     ('op', 'create'),
     # )
 
-    params = (
-        ('filename':'test.csv')
-    )
+    params = {'filename':'test.csv'}
 
     url = main_url + path + '/' + file_name + "?filename=" + file_name
     # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/test2.csv'
