@@ -30,7 +30,14 @@ def uploadFile(path, file_name):
     #     ('op', 'create'),
     # )
 
-    url = main_url + path + '/' + file_name + "?filename=" + file_name
+    # url = main_url + path + '/' + file_name + "?filename=" + file_name
+
+    url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test'
+
+    files = {
+        'file': open('test.csv','rb')
+    }
+
     # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/test2.csv'
 
     # https://example.com/api/upload.json?filename=test.jpeg
@@ -41,13 +48,14 @@ def uploadFile(path, file_name):
 
     # response = requests.put('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?op=create', headers=headers, verify=False, auth=('admin', 'Password1234'))
 
-    response = requests.post('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?filename=test.csv',
-                              headers=headers,
-                              data=open('test.csv','rt'),
-                              verify=False,
-                              auth=('admin', 'Password1234'))
+    response = requests.post(url,
+                            headers=headers,
+                            files=files,
+                            verify=False,
+                            auth=('admin', 'Password1234'))
 
-    print(response)
+    print(response.status_code)
+    print(response.text)
 
 
 def checkDirectory(folder_name):
