@@ -30,10 +30,16 @@ def uploadFile(path, file_name):
         ('op', 'create'),
     )
 
-    url = main_url + path + '/' + file_name
+    url = main_url + path + '/' + file_name + "?filename=" + file_name
     # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/test2.csv'
 
-    response = requests.put(url, headers=headers, params=params, verify=False, auth=('admin', 'Password1234'))
+    # https://example.com/api/upload.json?filename=test.jpeg
+
+    # https://10.10.0.104:30443/gateway/default/webhdfs/v1/
+
+
+    # response = requests.put(url, headers=headers, params=params, verify=False, auth=('admin', 'Password1234'))
+    response = requests.post()
 
     print(response)
 
