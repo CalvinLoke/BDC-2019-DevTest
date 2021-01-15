@@ -30,8 +30,6 @@ def uploadFile(path, file_name):
     #     ('op', 'create'),
     # )
 
-    params = {'filename':'test.csv'}
-
     url = main_url + path + '/' + file_name + "?filename=" + file_name
     # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/test2.csv'
 
@@ -43,7 +41,11 @@ def uploadFile(path, file_name):
 
     # response = requests.put('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?op=create', headers=headers, verify=False, auth=('admin', 'Password1234'))
 
-    response = requests.post('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv',headers=headers,params=params,verify=False,auth=('admin', 'Password1234'))
+    response = requests.post('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?filename=test.csv',
+                              headers=headers,
+                              data=open('test.csv','rb'),
+                              verify=False,
+                              auth=('admin', 'Password1234'))
 
     print(response)
 
