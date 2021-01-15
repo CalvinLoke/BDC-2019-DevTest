@@ -23,7 +23,8 @@ def createDirectory(dir_name):
 def uploadFile(path, file_name):
 
     headers = {
-        'Content-Type': 'application/octet-stream'
+        'Content-Type': 'application/octet-stream',
+        'Connection': 'keep-alive'
     }
 
     params = (
