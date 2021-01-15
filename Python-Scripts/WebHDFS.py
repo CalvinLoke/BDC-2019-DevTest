@@ -23,11 +23,15 @@ def createDirectory(dir_name):
 def uploadFile(path, file_name):
 
     headers = {
-        'Content-Type': 'application/octet-stream',
+        'Content-Type': 'application/octet-stream'
     }
 
+    # params = (
+    #     ('op', 'create'),
+    # )
+
     params = (
-        ('op', 'create'),
+        ('filename':'test.csv')
     )
 
     url = main_url + path + '/' + file_name + "?filename=" + file_name
