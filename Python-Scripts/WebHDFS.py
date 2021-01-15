@@ -32,6 +32,7 @@ def uploadFile(path, file_name):
 
     # url = main_url + path + '/' + file_name + "?filename=" + file_name
 
+    # url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/'+ path + "/" + file_name
     url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/' + file_name
 
     # files = {
