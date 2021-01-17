@@ -27,9 +27,9 @@ def uploadFile(path, file_name):
         'Connection': 'keep-alive'
     }
 
-    params = (
-        ('op', 'create'),
-    )
+    # params = (
+    #     ('op', 'create'),
+    # )
 
     # url = main_url + path + '/' + file_name + "?filename=" + file_name
 
@@ -60,7 +60,6 @@ def uploadFile(path, file_name):
     response = requests.post(url,
                             files=open(file_name,'rb'),
                             headers=headers,
-                            params=params,
                             verify=False,
                             auth=('admin', 'Password1234'))
 
