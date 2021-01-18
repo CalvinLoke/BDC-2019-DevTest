@@ -60,6 +60,7 @@ def uploadFile(path, file_name):
     response = requests.post(url,
                             files=open(file_name,'rb'),
                             headers=headers,
+                            params=params,
                             verify=False,
                             auth=('admin', 'Password1234'))
 
