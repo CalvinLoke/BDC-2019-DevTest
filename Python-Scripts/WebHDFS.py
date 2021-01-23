@@ -27,9 +27,9 @@ def uploadFile(path, file_name):
         'Connection': 'keep-alive'
     }
 
-    params = (
-        ('op', 'create'),
-    )
+    # params = (
+    #     ('op', 'create'),
+    # )
 
     # url = main_url + path + '/' + file_name + "?filename=" + file_name
 
@@ -50,19 +50,19 @@ def uploadFile(path, file_name):
 
     # response = requests.put('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?op=create', headers=headers, verify=False, auth=('admin', 'Password1234'))
 
-    response = requests.put(url,
+    # response = requests.put(url,
+    #                         files=open(file_name,'rb'),
+    #                         headers=headers,
+    #                         params=params,
+    #                         verify=False,
+    #                         auth=('admin', 'Password1234'))
+
+    response = requests.post(url,
                             files=open(file_name,'rb'),
                             headers=headers,
                             params=params,
                             verify=False,
                             auth=('admin', 'Password1234'))
-
-    # response = requests.post(url,
-    #                         data=open(file_name,'rb'),
-    #                         headers=headers,
-    #                         params=params,
-    #                         verify=False,
-    #                         auth=('admin', 'Password1234'))
 
     print(response.status_code)
     print(response.content)
