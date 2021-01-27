@@ -19,6 +19,8 @@ def createDirectory(dir_name):
     if response.status_code == 200:
         print(response.status_code)
         print("Directory created successfully")
+    else:
+        print("Directory failed to create")
 
 
 def uploadFile(path, file_name):
