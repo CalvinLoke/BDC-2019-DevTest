@@ -33,12 +33,15 @@ def uploadFile(path, file_name):
 
     # url = main_url + path + '/' + file_name + "?filename=" + file_name
 
-    # url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/'+ path + "/" + file_name
-    url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/' + file_name
-
+    url = main_url + path + "/" + file_name
     # response = requests.put(url, headers=headers, params=params, verify=False, auth=('admin', 'Password1234'))
 
-    response = requests.put('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?op=create', headers=headers, verify=False, auth=('admin', 'Password1234'))
+    response = requests.put(url, 
+                            headers=headers, 
+                            params = params,
+                            verify=False, 
+                            data=open(file_name,'rb'),
+                            auth=('admin', 'Password1234'))
 
     # response = requests.put(url,
     #                         files=open(file_name,'rb'),
