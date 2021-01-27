@@ -27,28 +27,18 @@ def uploadFile(path, file_name):
         'Connection': 'keep-alive'
     }
 
-    # params = (
-    #     ('op', 'create'),
-    # )
+    params = (
+        ('op', 'create'),
+    )
 
     # url = main_url + path + '/' + file_name + "?filename=" + file_name
 
     # url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/'+ path + "/" + file_name
     url = 'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/' + file_name
 
-    # files = {
-    #     'file': open('test.csv','rb')
-    # }
-
-    # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir/test2.csv'
-
-    # https://example.com/api/upload.json?filename=test.jpeg
-
-    # https://10.10.0.104:30443/gateway/default/webhdfs/v1/
-
     # response = requests.put(url, headers=headers, params=params, verify=False, auth=('admin', 'Password1234'))
 
-    # response = requests.put('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?op=create', headers=headers, verify=False, auth=('admin', 'Password1234'))
+    response = requests.put('https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/test.csv?op=create', headers=headers, verify=False, auth=('admin', 'Password1234'))
 
     # response = requests.put(url,
     #                         files=open(file_name,'rb'),
@@ -56,13 +46,6 @@ def uploadFile(path, file_name):
     #                         params=params,
     #                         verify=False,
     #                         auth=('admin', 'Password1234'))
-
-    response = requests.post(url,
-                            files=open(file_name,'rb'),
-                            headers=headers,
-                            params=params,
-                            verify=False,
-                            auth=('admin', 'Password1234'))
 
     print(response.status_code)
     print(response.content)
