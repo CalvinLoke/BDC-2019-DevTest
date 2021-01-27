@@ -7,15 +7,13 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 main_url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/'
 
 def createDirectory(dir_name):
-
     params = (
         ('op', 'MKDIRS'),
     )
 
     url = main_url + dir_name
-    # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir'
-
     response = requests.put(url, params=params, verify=False, auth=('admin', 'Password1234'))
+    
     if response.status_code == 200:
         print(response.status_code)
         print("Directory created successfully")
