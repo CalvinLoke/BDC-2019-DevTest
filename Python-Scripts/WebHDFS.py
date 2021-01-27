@@ -16,8 +16,9 @@ def createDirectory(dir_name):
     # url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/test_dir'
 
     response = requests.put(url, params=params, verify=False, auth=('admin', 'Password1234'))
-    
-    print(response)
+    if response.status_code == 200:
+        print(response.status_code)
+        print("Directory created successfully")
 
 
 def uploadFile(path, file_name):
@@ -42,13 +43,6 @@ def uploadFile(path, file_name):
                             verify=False, 
                             data=open(file_name,'rb'),
                             auth=('admin', 'Password1234'))
-
-    # response = requests.put(url,
-    #                         files=open(file_name,'rb'),
-    #                         headers=headers,
-    #                         params=params,
-    #                         verify=False,
-    #                         auth=('admin', 'Password1234'))
 
     print(response.status_code)
     print(response.content)
