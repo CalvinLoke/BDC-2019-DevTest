@@ -1,0 +1,23 @@
+FileStreaming
+/jar/mssql-spark-lib-assembly-1.0.jar
+--server mssql-master-pool-0.service-master-pool --port 1433 --user admin --password Password1234 --database sales --table web_clickstreams_spark_results --source_dir hdfs:///clickstream_data/ --input_format csv --enable_checkpoint false --timeout 380000
+
+curl -i -L -k 
+--anyauth -u admin:Password1234 
+-X PUT "https://10.10.0.104:30443/gateway/default/webhdfs/v1/test/resaleprices.csv?op=create" 
+-H "Content-Type: application/octet-stream" 
+-T "resaleprices.csv"
+
+curl -i -L -k 
+--anyauth -u admin:Password1234 
+-X PUT "https://10.10.0.104:30443/gateway/default/webhdfs/v1/test?op=MKDIRS" 
+
+
+curl -i -L -k --anyauth -u admin:Password1234 -X PUT "https://10.10.
+
+
+curl -i -L
+--anyauth -u admin:Password1234 
+"https://10.10.0.104:30443/gateway/default/webhdfs/v1/new-dir/test.csv?op=open" 
+
+
