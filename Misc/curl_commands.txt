@@ -16,8 +16,18 @@ curl -i -L -k
 curl -i -L -k --anyauth -u admin:Password1234 -X PUT "https://10.10.
 
 
-curl -i -L
---anyauth -u admin:Password1234 
-"https://10.10.0.104:30443/gateway/default/webhdfs/v1/new-dir/test.csv?op=open" 
+curl -i -L -k --anyauth -u admin:Password1234 "https://10.10.0.104:30443/gateway/default/webhdfs/v1/?op=LISTSTATUS" 
 
+3 different systems:M
+Mongo
+SQL
+HDFS
+
+Change DB schema
+
+Python based ML: 
+- Problem statement: Why 
+
+Operations:
+Storage usage alerts, limited in local-deployment context
 
