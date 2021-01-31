@@ -3,9 +3,11 @@ import urllib3
 import os.path
 import json
 
+
 # Supresses unverified HTTPS warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 main_url = r'https://10.10.0.104:30443/gateway/default/webhdfs/v1/'
+
 
 def createDirectory(dir_name):
     params = ( ('op', 'MKDIRS'), )
@@ -64,6 +66,7 @@ def rootDirectory():
         print(e)
         print("=======================================================")
 
+        
 def checkDirectory(folder_name):
     params = ( ('op', 'liststatus'),)
     url = main_url + folder_name + "/"
