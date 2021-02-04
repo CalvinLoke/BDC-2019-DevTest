@@ -31,3 +31,8 @@ Python based ML:
 Operations:
 Storage usage alerts, limited in local-deployment context
 
+Traditional model serving is more inconvienient
+SQL server allows for better E2E serving
+
+Wednesdaay 09:30~12:00?
+Thursday 13:30, 14:30~17:00
